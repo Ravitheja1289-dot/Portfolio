@@ -1,446 +1,284 @@
-import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
-import './Portfolio.css';
+"use client"
+
+import { useState, useEffect } from "react"
+import "./portfolio.css"
+import { Sun, Moon, Github, Linkedin, Mail, Menu, X, ArrowRight, ExternalLink } from "lucide-react"
 
 const Portfolio = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showProject, setShowProject] = useState(null);
-
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  // Apply dark mode to body
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }, [darkMode]);
+  // Theme state management
+  const [darkMode, setDarkMode] = useState(false)
+  // Mobile menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  // Scroll position for navbar styling
+  const [scrolled, setScrolled] = useState(false)
 
   // Projects data
   const projects = [
     {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform built with React and Node.js',
-      tech: ['React', 'Node.js', 'MongoDB', 'Express'],
-      image: '/api/placeholder/400/300'
+      title: "Project One",
+      description: "A full-stack application built with React and Node.js",
+      tags: ["React", "Node.js", "MongoDB"],
+      link: "https://example.com/project1",
     },
     {
-      id: 2,
-      title: 'Weather App',
-      description: 'A weather application that fetches data from OpenWeatherMap API',
-      tech: ['React', 'CSS', 'OpenWeatherMap API'],
-      image: '/api/placeholder/400/300'
+      title: "Project Two",
+      description: "An e-commerce platform with payment integration",
+      tags: ["React", "Firebase", "Stripe"],
+      link: "https://example.com/project2",
     },
     {
-      id: 3,
-      title: 'Task Management System',
-      description: 'A collaborative task management system with real-time updates',
-      tech: ['React', 'Firebase', 'Tailwind CSS'],
-      image: '/api/placeholder/400/300'
-    }
-  ];
+      title: "Project Three",
+      description: "A mobile-responsive dashboard with data visualization",
+      tags: ["React", "D3.js", "Tailwind CSS"],
+      link: "https://example.com/project3",
+    },
+  ]
 
   // Skills data
-  const skills = [
-    { name: 'JavaScript', level: 90 },
-    { name: 'React', level: 85 },
-    { name: 'Node.js', level: 80 },
-    { name: 'HTML/CSS', level: 95 },
-    { name: 'MongoDB', level: 75 },
-    { name: 'GraphQL', level: 70 }
-  ];
+  const skills = ["JavaScript", "React", "Node.js", "HTML/CSS", "MongoDB", "Express", "Git", "Responsive Design"]
 
-  // Handle section navigation
-  const navigateTo = (section) => {
-    setActiveSection(section);
-    setIsMenuOpen(false);
-    window.scrollTo(0, 0);
-  };
+  // Toggle theme function
+  const toggleTheme = () => {
+    setDarkMode(!darkMode)
+  }
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  // Close mobile menu when clicking a nav link
+  const closeMenu = () => {
+    setMobileMenuOpen(false)
+  }
+
+  // Handle scroll for navbar styling
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true)
+      } else {
+        setScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  // Apply theme on change and initialize from localStorage
+  useEffect(() => {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+      setDarkMode(true)
+    }
+
+    // Apply theme
+    if (darkMode) {
+      document.body.classList.add("dark-mode")
+      localStorage.setItem("theme", "dark")
+    } else {
+      document.body.classList.remove("dark-mode")
+      localStorage.setItem("theme", "light")
+    }
+  }, [darkMode])
 
   return (
-    <div className={`portfolio-container ${darkMode ? 'dark-theme' : 'light-theme'}`}>
-      {/* Header */}
-      <header className={`header ${darkMode ? 'dark-header' : 'light-header'}`}>
-        <div className="logo">
-          <span className="logo-highlight">Dev</span>Portfolio
-        </div>
-        
-        {/* Desktop Navigation */}
-        <nav className="desktop-nav">
-          {['home', 'about', 'projects', 'skills', 'contact'].map(section => (
-            <button 
-              key={section}
-              onClick={() => navigateTo(section)}
-              className={`nav-item ${activeSection === section ? 'active' : ''}`}
-            >
-              {section}
+    <div className="portfolio-container">
+      {/* Navbar */}
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className="navbar-container">
+          <a href="#" className="logo">
+            JD
+          </a>
+
+          <div className="desktop-nav">
+            <ul className="nav-links">
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#projects">Projects</a>
+              </li>
+              <li>
+                <a href="#skills">Skills</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+              {darkMode ? <Sun className="icon-small" /> : <Moon className="icon-small" />}
             </button>
-          ))}
-        </nav>
-        
-        {/* Mobile Navigation Toggle */}
-        <button 
-          className="mobile-menu-toggle"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          ☰
-        </button>
-        
-        {/* Dark Mode Toggle */}
-        <button 
-          onClick={toggleDarkMode}
-          className="theme-toggle"
-        >
-          {darkMode ? <Sun size={24} /> : <Moon size={24} />}
-        </button>
-      </header>
-      
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className={`mobile-menu ${darkMode ? 'dark-mobile-menu' : 'light-mobile-menu'}`}>
-          {['home', 'about', 'projects', 'skills', 'contact'].map(section => (
-            <button 
-              key={section}
-              onClick={() => navigateTo(section)}
-              className={`mobile-nav-item ${activeSection === section ? 'active' : ''}`}
-            >
-              {section}
+          </div>
+
+          <div className="mobile-nav-toggle">
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+              {darkMode ? <Sun className="icon-small" /> : <Moon className="icon-small" />}
             </button>
-          ))}
+            <button className="menu-toggle" onClick={toggleMobileMenu} aria-label="Toggle menu">
+              {mobileMenuOpen ? <X className="icon" /> : <Menu className="icon" />}
+            </button>
+          </div>
         </div>
-      )}
-      
-      <main className="main-content">
-        {/* Home Section */}
-        {activeSection === 'home' && (
-          <section className="section home-section">
-            <div className="home-content">
-              <h1 className="home-title">
-                Hi, I'm <span className="highlight">John Doe</span>
-              </h1>
-              <h2 className="home-subtitle">Frontend Developer</h2>
-              <p className="home-description">
-                I create beautiful and functional web applications with a focus on user experience.
-              </p>
-              <div className="home-buttons">
-                <button 
-                  onClick={() => navigateTo('projects')}
-                  className={`primary-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
-                >
-                  View My Work
-                </button>
-                <button 
-                  onClick={() => navigateTo('contact')}
-                  className={`secondary-button ${darkMode ? 'dark-secondary-button' : 'light-secondary-button'}`}
-                >
-                  Contact Me
-                </button>
-              </div>
-            </div>
-            <div className="home-image-container">
-              <div className="profile-image-wrapper">
-                <div className={`profile-image-background ${darkMode ? 'dark-accent' : 'light-accent'}`}></div>
-                <div className={`profile-image-frame ${darkMode ? 'dark-frame' : 'light-frame'}`}>
-                  <img 
-                    src="/api/placeholder/250/250" 
-                    alt="Profile" 
-                    className="profile-image"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-        
-        {/* About Section */}
-        {activeSection === 'about' && (
-          <section className="section about-section">
-            <h2 className="section-title">About Me</h2>
-            <div className="about-content">
-              <div className="about-image-container">
-                <div className="about-image-wrapper">
-                  <div className={`about-image-background ${darkMode ? 'dark-accent' : 'light-accent'}`}></div>
-                  <div className={`about-image-frame ${darkMode ? 'dark-frame' : 'light-frame'}`}>
-                    <img 
-                      src="/api/placeholder/250/250" 
-                      alt="About Me" 
-                      className="about-image"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="about-text">
-                <p className="about-paragraph">
-                  I'm a passionate frontend developer with over 5 years of experience creating responsive and intuitive web applications. I specialize in React and modern JavaScript frameworks.
-                </p>
-                <p className="about-paragraph">
-                  My journey began with a degree in Computer Science, followed by roles at tech startups where I honed my skills in creating user-focused digital experiences.
-                </p>
-                <p className="about-paragraph">
-                  When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new web technologies.
-                </p>
-                <div className="education-section">
-                  <h3 className="subsection-title">Education</h3>
-                  <div className={`education-card ${darkMode ? 'dark-card' : 'light-card'}`}>
-                    <h4 className="education-title">Bachelor of Science in Computer Science</h4>
-                    <p className="education-institution">University of Technology, 2016-2020</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-        
-        {/* Projects Section */}
-        {activeSection === 'projects' && (
-          <section className="section projects-section">
-            <h2 className="section-title">My Projects</h2>
-            <div className="projects-grid">
-              {projects.map((project) => (
-                <div 
-                  key={project.id}
-                  className={`project-card ${darkMode ? 'dark-card' : 'light-card'}`}
-                  onClick={() => setShowProject(project)}
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="project-image"
-                  />
-                  <div className="project-info">
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                    <div className="project-tech">
-                      {project.tech.map((tech, index) => (
-                        <span 
-                          key={index}
-                          className={`tech-tag ${darkMode ? 'dark-tech-tag' : 'light-tech-tag'}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Project Modal */}
-            {showProject && (
-              <div className="modal-overlay">
-                <div className={`modal-content ${darkMode ? 'dark-card' : 'light-card'}`}>
-                  <div className="modal-header">
-                    <h3 className="modal-title">{showProject.title}</h3>
-                    <button 
-                      onClick={() => setShowProject(null)}
-                      className="modal-close"
-                    >
-                      ×
-                    </button>
-                  </div>
-                  <img 
-                    src={showProject.image} 
-                    alt={showProject.title} 
-                    className="modal-image"
-                  />
-                  <p className="modal-description">{showProject.description}</p>
-                  <div className="modal-tech-section">
-                    <h4 className="modal-tech-title">Technologies Used:</h4>
-                    <div className="modal-tech-tags">
-                      {showProject.tech.map((tech, index) => (
-                        <span 
-                          key={index}
-                          className={`tech-tag ${darkMode ? 'dark-tech-tag' : 'light-tech-tag'}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="modal-actions">
-                    <button 
-                      className={`modal-close-button ${darkMode ? 'dark-secondary-button' : 'light-secondary-button'}`}
-                      onClick={() => setShowProject(null)}
-                    >
-                      Close
-                    </button>
-                    <button 
-                      className={`modal-live-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
-                    >
-                      View Live
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </section>
-        )}
-        
-        {/* Skills Section */}
-        {activeSection === 'skills' && (
-          <section className="section skills-section">
-            <h2 className="section-title">My Skills</h2>
-            <div className="skills-grid">
-              {skills.map((skill, index) => (
-                <div 
-                  key={index}
-                  className={`skill-card ${darkMode ? 'dark-card' : 'light-card'}`}
-                >
-                  <div className="skill-header">
-                    <h3 className="skill-name">{skill.name}</h3>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className={`skill-bar-bg ${darkMode ? 'dark-skill-bar-bg' : 'light-skill-bar-bg'}`}>
-                    <div 
-                      className={`skill-bar-fill ${darkMode ? 'dark-skill-bar-fill' : 'light-skill-bar-fill'}`}
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="experience-section">
-              <h3 className="subsection-title">Work Experience</h3>
-              <div className={`experience-timeline ${darkMode ? 'dark-timeline' : 'light-timeline'}`}>
-                {[
-                  {
-                    title: 'Senior Frontend Developer',
-                    company: 'Tech Solutions Inc.',
-                    period: '2022 - Present',
-                    description: 'Leading the frontend development team, implementing new features, and optimizing application performance.'
-                  },
-                  {
-                    title: 'Frontend Developer',
-                    company: 'Digital Creations',
-                    period: '2020 - 2022',
-                    description: 'Developed responsive web applications using React, improved UX/UI designs, and collaborated with backend teams.'
-                  },
-                  {
-                    title: 'Junior Web Developer',
-                    company: 'Web Experts',
-                    period: '2018 - 2020',
-                    description: 'Created and maintained websites, implemented responsive designs, and assisted with UX improvements.'
-                  }
-                ].map((job, index) => (
-                  <div 
-                    key={index}
-                    className="timeline-item"
-                  >
-                    <div className={`timeline-dot ${darkMode ? 'dark-timeline-dot' : 'light-timeline-dot'}`}>
-                      <div className={`timeline-dot-inner ${darkMode ? 'dark-timeline-dot-inner' : 'light-timeline-dot-inner'}`}></div>
-                    </div>
-                    <div className={`timeline-card ${darkMode ? 'dark-card' : 'light-card'}`}>
-                      <h4 className="job-title">{job.title}</h4>
-                      <div className="job-details">
-                        <span className="company-name">{job.company}</span>
-                        <span className="job-period">{job.period}</span>
-                      </div>
-                      <p className="job-description">{job.description}</p>
-                    </div>
-                  </div>
+
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
+          <ul className="mobile-nav-links">
+            <li>
+              <a href="#about" onClick={closeMenu}>
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#projects" onClick={closeMenu}>
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#skills" onClick={closeMenu}>
+                Skills
+              </a>
+            </li>
+            <li>
+              <a href="#contact" onClick={closeMenu}>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1 className="animate-in">John Doe</h1>
+          <h2 className="animate-in delay-1">Frontend Developer</h2>
+          <p className="animate-in delay-2">I build clean, minimal, and functional websites.</p>
+          <div className="hero-cta animate-in delay-3">
+            <a href="#contact" className="btn primary">
+              Get in touch <ArrowRight className="icon-small" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="about">
+        <h2 className="section-title">About</h2>
+        <div className="about-content">
+          <div className="about-text">
+            <p>
+              I'm a minimalist frontend developer focused on creating clean, functional, and user-friendly interfaces.
+              With a strong foundation in modern JavaScript frameworks, I build responsive web applications that
+              prioritize user experience.
+            </p>
+            <p>
+              My approach combines technical expertise with an eye for design, resulting in websites that are both
+              visually appealing and highly performant. I believe in writing clean, maintainable code and staying
+              current with the latest web technologies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="projects">
+        <h2 className="section-title">Projects</h2>
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            <div className="project-card" key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <div className="project-tags">
+                {project.tags.map((tag, tagIndex) => (
+                  <span className="tag" key={tagIndex}>
+                    {tag}
+                  </span>
                 ))}
               </div>
+              <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
+                View Project <ExternalLink className="icon-small" />
+              </a>
             </div>
-          </section>
-        )}
-        
-        {/* Contact Section */}
-        {activeSection === 'contact' && (
-          <section className="section contact-section">
-            <h2 className="section-title">Get In Touch</h2>
-            <div className="contact-content">
-              <div className="contact-info">
-                <h3 className="contact-subtitle">Contact Information</h3>
-                <div className="contact-details">
-                  <div className="contact-item">
-                    <Mail size={24} className="contact-icon" />
-                    <span>johndoe@example.com</span>
-                  </div>
-                  <div className="contact-item">
-                    <Github size={24} className="contact-icon" />
-                    <span>github.com/johndoe</span>
-                  </div>
-                  <div className="contact-item">
-                    <Linkedin size={24} className="contact-icon" />
-                    <span>linkedin.com/in/johndoe</span>
-                  </div>
-                </div>
-                
-                <h3 className="contact-subtitle social-subtitle">Social Media</h3>
-                <div className="social-links">
-                  {['twitter', 'facebook', 'instagram'].map((platform) => (
-                    <a 
-                      key={platform}
-                      href="#"
-                      className={`social-icon ${darkMode ? 'dark-social-icon' : 'light-social-icon'}`}
-                    >
-                      <span className="social-initial">{platform.charAt(0)}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="contact-form-container">
-                <h3 className="contact-subtitle">Send Me a Message</h3>
-                <form className="contact-form">
-                  <div className="form-group">
-                    <label htmlFor="name" className="form-label">Name</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      className={`form-input ${darkMode ? 'dark-input' : 'light-input'}`}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className={`form-input ${darkMode ? 'dark-input' : 'light-input'}`}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="message" className="form-label">Message</label>
-                    <textarea 
-                      id="message" 
-                      rows="5"
-                      className={`form-textarea ${darkMode ? 'dark-input' : 'light-input'}`}
-                    ></textarea>
-                  </div>
-                  <button 
-                    type="submit"
-                    className={`submit-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="skills">
+        <h2 className="section-title">Skills</h2>
+        <div className="skills-container">
+          {skills.map((skill, index) => (
+            <div className="skill-item" key={index} style={{ animationDelay: `${index * 0.05}s` }}>
+              {skill}
             </div>
-          </section>
-        )}
-      </main>
-      
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="contact">
+        <h2 className="section-title">Contact</h2>
+        <div className="contact-content">
+          <form className="contact-form">
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" className="btn primary">
+              Send Message
+            </button>
+          </form>
+          <div className="contact-info">
+            <div className="contact-item">
+              <Mail className="icon" />
+              <a href="mailto:hello@johndoe.com">hello@johndoe.com</a>
+            </div>
+            <div className="contact-item">
+              <Github className="icon" />
+              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+                github.com/johndoe
+              </a>
+            </div>
+            <div className="contact-item">
+              <Linkedin className="icon" />
+              <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
+                linkedin.com/in/johndoe
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className={`footer ${darkMode ? 'dark-footer' : 'light-footer'}`}>
+      <footer>
         <div className="footer-content">
-          <p className="copyright">&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
-          <div className="footer-social">
-            <Github size={20} className="footer-icon" />
-            <Linkedin size={20} className="footer-icon" />
-            <Mail size={20} className="footer-icon" />
+          <p>© {new Date().getFullYear()} John Doe</p>
+          <div className="social-links">
+            <a href="https://github.com/johndoe" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <Github className="icon-small" />
+            </a>
+            <a href="https://linkedin.com/in/johndoe" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="icon-small" />
+            </a>
           </div>
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default Portfolio;
+export default Portfolio
+
