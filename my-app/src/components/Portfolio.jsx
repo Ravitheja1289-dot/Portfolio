@@ -1,366 +1,442 @@
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Code, User, Mail, ExternalLink, GitHub, Linkedin, Menu, X } from 'lucide-react';
+import { Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
+import './Portfolio.css';
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Initialize theme based on user preference
-  useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setDarkMode(prefersDark);
-    // Add a slight delay to trigger animations
-    setTimeout(() => setIsLoaded(true), 300);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showProject, setShowProject] = useState(null);
 
   // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+  // Apply dark mode to body
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
+
   // Projects data
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "A full-stack e-commerce application with user authentication, product management, and payment integration.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubLink: "#"
+      id: 1,
+      title: 'E-Commerce Platform',
+      description: 'A full-stack e-commerce platform built with React and Node.js',
+      tech: ['React', 'Node.js', 'MongoDB', 'Express'],
+      image: '/api/placeholder/400/300'
     },
     {
-      title: "Weather Dashboard",
-      description: "A real-time weather application that displays forecast data based on location.",
-      tech: ["React", "Weather API", "Chart.js", "Tailwind CSS"],
-      githubLink: "#"
+      id: 2,
+      title: 'Weather App',
+      description: 'A weather application that fetches data from OpenWeatherMap API',
+      tech: ['React', 'CSS', 'OpenWeatherMap API'],
+      image: '/api/placeholder/400/300'
     },
     {
-      title: "Task Management System",
-      description: "A kanban-style task management application with drag and drop functionality.",
-      tech: ["React", "Redux", "Firebase", "react-beautiful-dnd"],
-      githubLink: "#"
+      id: 3,
+      title: 'Task Management System',
+      description: 'A collaborative task management system with real-time updates',
+      tech: ['React', 'Firebase', 'Tailwind CSS'],
+      image: '/api/placeholder/400/300'
     }
   ];
 
   // Skills data
   const skills = [
-    { name: "Frontend", items: ["React", "JavaScript", "TypeScript", "HTML/CSS", "Tailwind CSS"] },
-    { name: "Backend", items: ["Node.js", "Express", "MongoDB", "PostgreSQL", "GraphQL"] },
-    { name: "Tools", items: ["Git", "Docker", "AWS", "Figma", "Jest"] }
+    { name: 'JavaScript', level: 90 },
+    { name: 'React', level: 85 },
+    { name: 'Node.js', level: 80 },
+    { name: 'HTML/CSS', level: 95 },
+    { name: 'MongoDB', level: 75 },
+    { name: 'GraphQL', level: 70 }
   ];
 
+  // Handle section navigation
+  const navigateTo = (section) => {
+    setActiveSection(section);
+    setIsMenuOpen(false);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-800'}`}>
-      {/* Navigation */}
-      <nav className={`fixed w-full z-10 transition-colors duration-300 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'} shadow-md`}>
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <a href="#home" className="text-xl font-bold flex items-center" onClick={() => setActiveSection('home')}>
-            <span className="text-blue-500 mr-2">&lt;</span>
-            DevPortfolio
-            <span className="text-blue-500 ml-2">/&gt;</span>
-          </a>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <a 
-              href="#about" 
-              className={`hover:text-blue-500 transition-colors ${activeSection === 'about' ? 'text-blue-500' : ''}`}
-              onClick={() => setActiveSection('about')}
-            >About</a>
-            <a 
-              href="#projects" 
-              className={`hover:text-blue-500 transition-colors ${activeSection === 'projects' ? 'text-blue-500' : ''}`}
-              onClick={() => setActiveSection('projects')}
-            >Projects</a>
-            <a 
-              href="#skills" 
-              className={`hover:text-blue-500 transition-colors ${activeSection === 'skills' ? 'text-blue-500' : ''}`}
-              onClick={() => setActiveSection('skills')}
-            >Skills</a>
-            <a 
-              href="#contact" 
-              className={`hover:text-blue-500 transition-colors ${activeSection === 'contact' ? 'text-blue-500' : ''}`}
-              onClick={() => setActiveSection('contact')}
-            >Contact</a>
-            <button 
-              onClick={toggleDarkMode} 
-              className={`p-2 rounded-full transition-colors ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button onClick={toggleDarkMode} className="mr-4">
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+    <div className={`portfolio-container ${darkMode ? 'dark-theme' : 'light-theme'}`}>
+      {/* Header */}
+      <header className={`header ${darkMode ? 'dark-header' : 'light-header'}`}>
+        <div className="logo">
+          <span className="logo-highlight">Dev</span>Portfolio
         </div>
         
-        {/* Mobile Navigation */}
-        {menuOpen && (
-          <div className={`md:hidden transition-all duration-300 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-            <a 
-              href="#about" 
-              className="block py-3 px-4 hover:bg-blue-500 hover:text-white transition-colors"
-              onClick={() => {setActiveSection('about'); setMenuOpen(false);}}
-            >About</a>
-            <a 
-              href="#projects" 
-              className="block py-3 px-4 hover:bg-blue-500 hover:text-white transition-colors"
-              onClick={() => {setActiveSection('projects'); setMenuOpen(false);}}
-            >Projects</a>
-            <a 
-              href="#skills" 
-              className="block py-3 px-4 hover:bg-blue-500 hover:text-white transition-colors"
-              onClick={() => {setActiveSection('skills'); setMenuOpen(false);}}
-            >Skills</a>
-            <a 
-              href="#contact" 
-              className="block py-3 px-4 hover:bg-blue-500 hover:text-white transition-colors"
-              onClick={() => {setActiveSection('contact'); setMenuOpen(false);}}
-            >Contact</a>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section 
-        id="home" 
-        className={`min-h-screen flex items-center justify-center transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-      >
-        <div className="container mx-auto px-4 py-16 md:py-32 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 transform transition-transform duration-700 ease-out translate-y-0 opacity-100" 
-            style={{ transform: isLoaded ? 'translateY(0)' : 'translateY(50px)' }}>
-            Hi, I'm <span className="text-blue-500">Your Name</span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-8 transform transition-transform duration-700 delay-200 ease-out"
-            style={{ transform: isLoaded ? 'translateY(0)' : 'translateY(50px)' }}>
-            Full Stack Developer & UI/UX Enthusiast
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto mb-12 transform transition-transform duration-700 delay-300 ease-out"
-            style={{ transform: isLoaded ? 'translateY(0)' : 'translateY(50px)' }}>
-            I build modern, responsive web applications with a focus on user experience and clean code.
-          </p>
-          <div className="flex justify-center space-x-4 transform transition-transform duration-700 delay-500 ease-out"
-            style={{ transform: isLoaded ? 'translateY(0)' : 'translateY(50px)' }}>
-            <a 
-              href="#projects" 
-              className={`px-6 py-3 rounded-md bg-blue-500 text-white font-medium hover:bg-blue-600 transition-all hover:scale-105`}
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          {['home', 'about', 'projects', 'skills', 'contact'].map(section => (
+            <button 
+              key={section}
+              onClick={() => navigateTo(section)}
+              className={`nav-item ${activeSection === section ? 'active' : ''}`}
             >
-              View My Work
-            </a>
-            <a 
-              href="#contact" 
-              className={`px-6 py-3 rounded-md border-2 ${darkMode ? 'border-gray-300 hover:border-white' : 'border-gray-500 hover:border-gray-700'} font-medium transition-all hover:scale-105`}
+              {section}
+            </button>
+          ))}
+        </nav>
+        
+        {/* Mobile Navigation Toggle */}
+        <button 
+          className="mobile-menu-toggle"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          ☰
+        </button>
+        
+        {/* Dark Mode Toggle */}
+        <button 
+          onClick={toggleDarkMode}
+          className="theme-toggle"
+        >
+          {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+        </button>
+      </header>
+      
+      {/* Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <div className={`mobile-menu ${darkMode ? 'dark-mobile-menu' : 'light-mobile-menu'}`}>
+          {['home', 'about', 'projects', 'skills', 'contact'].map(section => (
+            <button 
+              key={section}
+              onClick={() => navigateTo(section)}
+              className={`mobile-nav-item ${activeSection === section ? 'active' : ''}`}
             >
-              Contact Me
-            </a>
-          </div>
-          <div className="mt-16 flex justify-center space-x-6 transform transition-opacity duration-1000 delay-700"
-            style={{ opacity: isLoaded ? 1 : 0 }}>
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <GitHub size={24} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <Linkedin size={24} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <Mail size={24} />
-            </a>
-          </div>
+              {section}
+            </button>
+          ))}
         </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            <span className="text-blue-500">About</span> Me
-          </h2>
-          <div className="flex flex-col md:flex-row items-center max-w-4xl mx-auto">
-            <div className="md:w-1/3 mb-8 md:mb-0">
-              <div className={`w-64 h-64 rounded-full mx-auto overflow-hidden border-4 ${darkMode ? 'border-blue-400' : 'border-blue-500'} transition-transform hover:scale-105 duration-300`}>
-                <img 
-                  src="/api/placeholder/300/300" 
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="md:w-2/3 md:pl-12">
-              <p className="text-lg mb-6">
-                Hello! I'm a passionate full-stack developer with over 5 years of experience creating web applications. I specialize in React for frontend and Node.js for backend development.
+      )}
+      
+      <main className="main-content">
+        {/* Home Section */}
+        {activeSection === 'home' && (
+          <section className="section home-section">
+            <div className="home-content">
+              <h1 className="home-title">
+                Hi, I'm <span className="highlight">John Doe</span>
+              </h1>
+              <h2 className="home-subtitle">Frontend Developer</h2>
+              <p className="home-description">
+                I create beautiful and functional web applications with a focus on user experience.
               </p>
-              <p className="text-lg mb-6">
-                My approach to development combines technical expertise with an eye for design, ensuring that the applications I build are not only functional but also intuitive and visually appealing.
-              </p>
-              <p className="text-lg">
-                When I'm not coding, I enjoy hiking, reading tech blogs, and contributing to open-source projects.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section 
-        id="projects" 
-        className={`py-16 md:py-24 ${darkMode ? 'bg-gray-800' : 'bg-gray-100'} transition-colors duration-300`}
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            My <span className="text-blue-500">Projects</span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div 
-                key={index}
-                className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-50'}`}
-              >
-                <div className="h-48 bg-blue-100 flex items-center justify-center">
-                  <Code size={64} className="text-blue-500" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                  <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, techIndex) => (
-                      <span 
-                        key={techIndex}
-                        className={`px-3 py-1 rounded-full text-sm ${darkMode ? 'bg-gray-600 text-blue-300' : 'bg-blue-100 text-blue-800'}`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <a 
-                    href={project.githubLink}
-                    className="flex items-center font-medium text-blue-500 hover:text-blue-700 transition-colors"
-                  >
-                    <GitHub size={16} className="mr-2" />
-                    View on GitHub
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            <span className="text-blue-500">Skills</span> & Technologies
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <div 
-                key={index}
-                className={`rounded-lg p-6 transition-all duration-300 transform hover:scale-105 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'}`}
-              >
-                <h3 className="text-xl font-bold mb-4 text-blue-500">{skill.name}</h3>
-                <ul>
-                  {skill.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-center mb-2">
-                      <div className={`w-2 h-2 rounded-full mr-2 ${darkMode ? 'bg-blue-400' : 'bg-blue-500'}`}></div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section 
-        id="contact" 
-        className={`py-16 md:py-24 ${darkMode ? 'bg-gray-800' : 'bg-gray-100'} transition-colors duration-300`}
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Get In <span className="text-blue-500">Touch</span>
-          </h2>
-          <div className="max-w-2xl mx-auto">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Name</label>
-                  <input 
-                    type="text" 
-                    className={`w-full px-4 py-3 rounded-lg transition-colors ${
-                      darkMode ? 'bg-gray-700 text-white border-gray-600 focus:border-blue-500' : 'bg-white text-gray-800 border-gray-300 focus:border-blue-500'
-                    } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div>
-                  <label className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Email</label>
-                  <input 
-                    type="email" 
-                    className={`w-full px-4 py-3 rounded-lg transition-colors ${
-                      darkMode ? 'bg-gray-700 text-white border-gray-600 focus:border-blue-500' : 'bg-white text-gray-800 border-gray-300 focus:border-blue-500'
-                    } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Subject</label>
-                <input 
-                  type="text" 
-                  className={`w-full px-4 py-3 rounded-lg transition-colors ${
-                    darkMode ? 'bg-gray-700 text-white border-gray-600 focus:border-blue-500' : 'bg-white text-gray-800 border-gray-300 focus:border-blue-500'
-                  } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
-                  placeholder="Subject"
-                />
-              </div>
-              <div>
-                <label className={`block mb-2 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Message</label>
-                <textarea 
-                  rows="5" 
-                  className={`w-full px-4 py-3 rounded-lg transition-colors ${
-                    darkMode ? 'bg-gray-700 text-white border-gray-600 focus:border-blue-500' : 'bg-white text-gray-800 border-gray-300 focus:border-blue-500'
-                  } border focus:outline-none focus:ring-2 focus:ring-blue-500/50`}
-                  placeholder="Your message here..."
-                ></textarea>
-              </div>
-              <div>
+              <div className="home-buttons">
                 <button 
-                  type="submit" 
-                  className="w-full px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2"
+                  onClick={() => navigateTo('projects')}
+                  className={`primary-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
                 >
-                  Send Message
+                  View My Work
+                </button>
+                <button 
+                  onClick={() => navigateTo('contact')}
+                  className={`secondary-button ${darkMode ? 'dark-secondary-button' : 'light-secondary-button'}`}
+                >
+                  Contact Me
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
+            </div>
+            <div className="home-image-container">
+              <div className="profile-image-wrapper">
+                <div className={`profile-image-background ${darkMode ? 'dark-accent' : 'light-accent'}`}></div>
+                <div className={`profile-image-frame ${darkMode ? 'dark-frame' : 'light-frame'}`}>
+                  <img 
+                    src="/api/placeholder/250/250" 
+                    alt="Profile" 
+                    className="profile-image"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+        
+        {/* About Section */}
+        {activeSection === 'about' && (
+          <section className="section about-section">
+            <h2 className="section-title">About Me</h2>
+            <div className="about-content">
+              <div className="about-image-container">
+                <div className="about-image-wrapper">
+                  <div className={`about-image-background ${darkMode ? 'dark-accent' : 'light-accent'}`}></div>
+                  <div className={`about-image-frame ${darkMode ? 'dark-frame' : 'light-frame'}`}>
+                    <img 
+                      src="/api/placeholder/250/250" 
+                      alt="About Me" 
+                      className="about-image"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="about-text">
+                <p className="about-paragraph">
+                  I'm a passionate frontend developer with over 5 years of experience creating responsive and intuitive web applications. I specialize in React and modern JavaScript frameworks.
+                </p>
+                <p className="about-paragraph">
+                  My journey began with a degree in Computer Science, followed by roles at tech startups where I honed my skills in creating user-focused digital experiences.
+                </p>
+                <p className="about-paragraph">
+                  When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new web technologies.
+                </p>
+                <div className="education-section">
+                  <h3 className="subsection-title">Education</h3>
+                  <div className={`education-card ${darkMode ? 'dark-card' : 'light-card'}`}>
+                    <h4 className="education-title">Bachelor of Science in Computer Science</h4>
+                    <p className="education-institution">University of Technology, 2016-2020</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+        
+        {/* Projects Section */}
+        {activeSection === 'projects' && (
+          <section className="section projects-section">
+            <h2 className="section-title">My Projects</h2>
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <div 
+                  key={project.id}
+                  className={`project-card ${darkMode ? 'dark-card' : 'light-card'}`}
+                  onClick={() => setShowProject(project)}
+                >
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="project-image"
+                  />
+                  <div className="project-info">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    <div className="project-tech">
+                      {project.tech.map((tech, index) => (
+                        <span 
+                          key={index}
+                          className={`tech-tag ${darkMode ? 'dark-tech-tag' : 'light-tech-tag'}`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Project Modal */}
+            {showProject && (
+              <div className="modal-overlay">
+                <div className={`modal-content ${darkMode ? 'dark-card' : 'light-card'}`}>
+                  <div className="modal-header">
+                    <h3 className="modal-title">{showProject.title}</h3>
+                    <button 
+                      onClick={() => setShowProject(null)}
+                      className="modal-close"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <img 
+                    src={showProject.image} 
+                    alt={showProject.title} 
+                    className="modal-image"
+                  />
+                  <p className="modal-description">{showProject.description}</p>
+                  <div className="modal-tech-section">
+                    <h4 className="modal-tech-title">Technologies Used:</h4>
+                    <div className="modal-tech-tags">
+                      {showProject.tech.map((tech, index) => (
+                        <span 
+                          key={index}
+                          className={`tech-tag ${darkMode ? 'dark-tech-tag' : 'light-tech-tag'}`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="modal-actions">
+                    <button 
+                      className={`modal-close-button ${darkMode ? 'dark-secondary-button' : 'light-secondary-button'}`}
+                      onClick={() => setShowProject(null)}
+                    >
+                      Close
+                    </button>
+                    <button 
+                      className={`modal-live-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
+                    >
+                      View Live
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+        
+        {/* Skills Section */}
+        {activeSection === 'skills' && (
+          <section className="section skills-section">
+            <h2 className="section-title">My Skills</h2>
+            <div className="skills-grid">
+              {skills.map((skill, index) => (
+                <div 
+                  key={index}
+                  className={`skill-card ${darkMode ? 'dark-card' : 'light-card'}`}
+                >
+                  <div className="skill-header">
+                    <h3 className="skill-name">{skill.name}</h3>
+                    <span className="skill-percentage">{skill.level}%</span>
+                  </div>
+                  <div className={`skill-bar-bg ${darkMode ? 'dark-skill-bar-bg' : 'light-skill-bar-bg'}`}>
+                    <div 
+                      className={`skill-bar-fill ${darkMode ? 'dark-skill-bar-fill' : 'light-skill-bar-fill'}`}
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="experience-section">
+              <h3 className="subsection-title">Work Experience</h3>
+              <div className={`experience-timeline ${darkMode ? 'dark-timeline' : 'light-timeline'}`}>
+                {[
+                  {
+                    title: 'Senior Frontend Developer',
+                    company: 'Tech Solutions Inc.',
+                    period: '2022 - Present',
+                    description: 'Leading the frontend development team, implementing new features, and optimizing application performance.'
+                  },
+                  {
+                    title: 'Frontend Developer',
+                    company: 'Digital Creations',
+                    period: '2020 - 2022',
+                    description: 'Developed responsive web applications using React, improved UX/UI designs, and collaborated with backend teams.'
+                  },
+                  {
+                    title: 'Junior Web Developer',
+                    company: 'Web Experts',
+                    period: '2018 - 2020',
+                    description: 'Created and maintained websites, implemented responsive designs, and assisted with UX improvements.'
+                  }
+                ].map((job, index) => (
+                  <div 
+                    key={index}
+                    className="timeline-item"
+                  >
+                    <div className={`timeline-dot ${darkMode ? 'dark-timeline-dot' : 'light-timeline-dot'}`}>
+                      <div className={`timeline-dot-inner ${darkMode ? 'dark-timeline-dot-inner' : 'light-timeline-dot-inner'}`}></div>
+                    </div>
+                    <div className={`timeline-card ${darkMode ? 'dark-card' : 'light-card'}`}>
+                      <h4 className="job-title">{job.title}</h4>
+                      <div className="job-details">
+                        <span className="company-name">{job.company}</span>
+                        <span className="job-period">{job.period}</span>
+                      </div>
+                      <p className="job-description">{job.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+        
+        {/* Contact Section */}
+        {activeSection === 'contact' && (
+          <section className="section contact-section">
+            <h2 className="section-title">Get In Touch</h2>
+            <div className="contact-content">
+              <div className="contact-info">
+                <h3 className="contact-subtitle">Contact Information</h3>
+                <div className="contact-details">
+                  <div className="contact-item">
+                    <Mail size={24} className="contact-icon" />
+                    <span>johndoe@example.com</span>
+                  </div>
+                  <div className="contact-item">
+                    <Github size={24} className="contact-icon" />
+                    <span>github.com/johndoe</span>
+                  </div>
+                  <div className="contact-item">
+                    <Linkedin size={24} className="contact-icon" />
+                    <span>linkedin.com/in/johndoe</span>
+                  </div>
+                </div>
+                
+                <h3 className="contact-subtitle social-subtitle">Social Media</h3>
+                <div className="social-links">
+                  {['twitter', 'facebook', 'instagram'].map((platform) => (
+                    <a 
+                      key={platform}
+                      href="#"
+                      className={`social-icon ${darkMode ? 'dark-social-icon' : 'light-social-icon'}`}
+                    >
+                      <span className="social-initial">{platform.charAt(0)}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="contact-form-container">
+                <h3 className="contact-subtitle">Send Me a Message</h3>
+                <form className="contact-form">
+                  <div className="form-group">
+                    <label htmlFor="name" className="form-label">Name</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      className={`form-input ${darkMode ? 'dark-input' : 'light-input'}`}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className={`form-input ${darkMode ? 'dark-input' : 'light-input'}`}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="message" className="form-label">Message</label>
+                    <textarea 
+                      id="message" 
+                      rows="5"
+                      className={`form-textarea ${darkMode ? 'dark-input' : 'light-input'}`}
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit"
+                    className={`submit-button ${darkMode ? 'dark-primary-button' : 'light-primary-button'}`}
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+        )}
+      </main>
+      
       {/* Footer */}
-      <footer className={`py-8 transition-colors duration-300 ${darkMode ? 'bg-gray-900 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center space-x-6 mb-6">
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <GitHub size={20} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <Linkedin size={20} />
-            </a>
-            <a href="#" className="text-gray-500 hover:text-blue-500 transition-colors">
-              <Mail size={20} />
-            </a>
+      <footer className={`footer ${darkMode ? 'dark-footer' : 'light-footer'}`}>
+        <div className="footer-content">
+          <p className="copyright">&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
+          <div className="footer-social">
+            <Github size={20} className="footer-icon" />
+            <Linkedin size={20} className="footer-icon" />
+            <Mail size={20} className="footer-icon" />
           </div>
-          <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
         </div>
       </footer>
     </div>
