@@ -17,7 +17,7 @@ const Projects = () => {
       description:
         "A chatbot aimed at providing mental health support using AI, offering friendly conversations and guidance to users facing stress or emotional challenges.",
       technologies: ["Python", "NLP", "Flask"],
-      github: "https://github.com/your-repo-link-chatbot",
+      github: "https://github.com/Ravitheja1289-dot/Mindful_Strength",
       liveDemo: "https://your-live-demo-link-chatbot",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
