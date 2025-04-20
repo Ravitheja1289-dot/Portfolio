@@ -8,33 +8,55 @@ const Skills = () => {
       skills: [
         { name: 'JavaScript', icon: '⚡' },
         { name: 'Python', icon: '🐍' },
-        { name: 'Java', icon: '☕' }
+        { name: 'Java', icon: '☕' },
+        { name: 'C', icon: '©️' }
       ]
     },
     {
       category: "Frontend",
       skills: [
         { name: 'React', icon: '⚛️' },
+        { name: 'Next.js', icon: 'Ⓝ' },
         { name: 'HTML', icon: '🌐' },
         { name: 'CSS', icon: '🎨' },
         { name: 'Tailwind CSS', icon: '💨' },
-        { name: 'Three.js', icon: '🎮' }
+        { name: 'Three.js', icon: '🎮' },
+        { name: 'Flutter', icon: '📱' }
       ]
     },
     {
       category: "Backend",
       skills: [
-        { name: 'Node.js', icon: '🖥️' }
+        { name: 'Node.js', icon: '🖥️' },
+        { name: 'Express.js', icon: '⚡' },
+        { name: 'Flask', icon: '🧪' },
+        { name: 'Fast API', icon: '🚀' },
+        { name: 'MongoDB', icon: '🍃' },
+        { name: 'MySQL', icon: '🐬' },
+        { name: 'Firebase', icon: '🔥' },
+        { name: 'REST APIs', icon: '🔌' },
+        { name: 'OAuth', icon: '🔑' },
+        { name: 'GraphQL', icon: '📊' },
+        { name: 'Docker', icon: '🐳' },
+        { name: 'Streamlit', icon: '📊' }
       ]
     },
     {
       category: "AI/ML",
       skills: [
-        { name: 'OpenCV', icon: '👁️' },
         { name: 'TensorFlow', icon: '🧠' },
-        { name: 'YOLOv8', icon: '🎯' },
+        { name: 'OpenCV', icon: '👁️' },
         { name: 'NLP', icon: '📝' },
-        { name: 'Deep Learning', icon: '🤖' }
+        { name: 'YOLOv8', icon: '🎯' },
+        { name: 'Scikit-learn', icon: '🔬' },
+        { name: 'spaCy', icon: '🤖' },
+        { name: 'Pandas', icon: '🐼' },
+        { name: 'NumPy', icon: '🔢' },
+        { name: 'Matplotlib', icon: '📈' },
+        { name: 'Seaborn', icon: '📊' },
+        { name: 'Plotly', icon: '📉' },
+        { name: 'Google Cloud AI', icon: '☁️' },
+        { name: 'Ollama', icon: '🦙' }
       ]
     },
     {
@@ -42,6 +64,7 @@ const Skills = () => {
       skills: [
         { name: 'Git', icon: '📦' },
         { name: 'GitHub', icon: '🐙' },
+        { name: 'Docker', icon: '🐳' },
         { name: 'VS Code', icon: '💻' },
         { name: 'Figma', icon: '🎨' }
       ]
