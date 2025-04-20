@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary-color: #00ff88;
+  --primary-color: #ffffff;
   --dark-bg: #121212;
   --dark-card: #1a1a1a;
   --dark-border: #2a2a2a;
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Google Sans', sans-serif;
   background-color: var(--dark-bg);
   color: var(--text-primary);
   line-height: 1.6;
@@ -52,7 +52,7 @@ ul {
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
 section {

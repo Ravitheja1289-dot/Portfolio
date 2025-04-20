@@ -3,14 +3,19 @@ import '../styles/Skills.css';
 
 const Skills = () => {
   const skills = [
-    { name: 'HTML5', level: 90 },
-    { name: 'CSS3', level: 85 },
-    { name: 'JavaScript', level: 80 },
-    { name: 'React', level: 85 },
-    { name: 'Node.js', level: 75 },
-    { name: 'Express', level: 70 },
-    { name: 'MongoDB', level: 75 },
-    { name: 'Git', level: 80 },
+    { name: 'Machine Learning', icon: '🧠' },
+    { name: 'AI', icon: '🤖' },
+    { name: 'Next.js', icon: '🚀' },
+    { name: 'React', icon: '⚛️' },
+    { name: 'Node.js', icon: '🖥️' },
+    { name: 'MongoDB', icon: '🗄️' },
+    { name: 'SQL', icon: '📊' },
+    { name: 'GitHub', icon: '🐙' },
+    { name: 'Git', icon: '📦' },
+    { name: 'Express', icon: '🚂' },
+    { name: 'JavaScript', icon: '⚡' },
+    { name: 'HTML5', icon: '💻' },
+    { name: 'CSS3', icon: '🎨' }
   ];
 
   return (
@@ -19,17 +24,9 @@ const Skills = () => {
         <h2 className="section-title">My Skills</h2>
         <div className="skills-grid">
           {skills.map((skill, index) => (
-            <div key={index} className="skill-item">
-              <div className="skill-info">
-                <span className="skill-name">{skill.name}</span>
-                <span className="skill-percent">{skill.level}%</span>
-              </div>
-              <div className="skill-bar">
-                <div
-                  className="skill-progress"
-                  style={{ width: `${skill.level}%` }}
-                ></div>
-              </div>
+            <div key={index} className="skill-box">
+              <div className="skill-icon">{skill.icon}</div>
+              <div className="skill-name">{skill.name}</div>
             </div>
           ))}
         </div>
