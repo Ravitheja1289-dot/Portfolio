@@ -9,14 +9,14 @@ const About = () => {
           <h2 className="section-title">About Me</h2>
           <div className="about-text">
             <p>
-              I'm a passionate Full Stack Developer with expertise in modern web technologies.
-              I love creating beautiful, responsive, and user-friendly applications that solve
-              real-world problems.
+            I'm Ravi — a full-stack web developer, AI/ML enthusiast, and natural leader currently pursuing my BTech. I love building sleek websites, diving deep into machine learning models, and leading tech events that spark innovation. My journey is all about blending creativity, code, and community.
             </p>
             <p>
-              With a strong foundation in both frontend and backend development,
-              I'm constantly learning and adapting to new technologies to stay at
-              the forefront of web development.
+            From coordinating college fests like Aavishkar 2024, to reaching the finals at Megathon IIIT-H, and attending elite workshops like IIT Hyderabad’s AI Bootcamp—I'm always learning, growing, and pushing limits.
+            </p>
+<p>
+Whether it's developing a traffic automation system with YOLOv8, designing a 3D real estate site using Three.js, or building fraud detection systems with NLP—my work lies at the intersection of tech and impact.
+
             </p>
           </div>
           <div className="about-stats">
