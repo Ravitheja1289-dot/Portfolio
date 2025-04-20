@@ -99,6 +99,10 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9rem;
+  font-family: 'Google Sans Text', 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
 }
 
 .project-links a:first-child {
@@ -114,13 +118,19 @@
 }
 
 .project-links a:first-child:hover {
-  background-color: #00ff88;
-  color: #000000;
+  border-color: #00cc6a;
+  color: #00ff88;
+  transform: scale(0.98) translateY(2px);
 }
 
 .project-links a:last-child:hover {
   background-color: #00cc6a;
   border-color: #00cc6a;
+  transform: scale(0.98) translateY(2px);
+}
+
+.project-links a:active {
+  transform: scale(0.95) translateY(3px);
 }
 
 @media (max-width: 768px) {
