@@ -9,39 +9,66 @@
   margin: 0 auto;
 }
 
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category {
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+}
+
+.category-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #00ff88;
+  text-align: center;
+}
+
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
 }
 
 .skill-box {
-  background-color: #1a1a1a;
-  border: 2px solid #ffffff;
+  background-color: #242424;
+  padding: 1rem;
   border-radius: 10px;
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  text-align: center;
   transition: all 0.3s ease;
+  border: 1px solid #333;
 }
 
 .skill-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+  border-color: #00ff88;
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
 }
 
 .skill-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .skill-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
@@ -49,20 +76,36 @@
     padding: 3rem 1rem;
   }
 
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .skills-categories {
+    grid-template-columns: 1fr;
+  }
+
   .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .skill-category {
+    padding: 1.5rem;
+  }
+
+  .category-title {
+    font-size: 1.3rem;
   }
 
   .skill-box {
-    padding: 1.5rem 0.5rem;
+    padding: 0.8rem;
   }
 
   .skill-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .skill-name {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 } 
