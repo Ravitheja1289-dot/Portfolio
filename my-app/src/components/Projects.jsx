@@ -8,8 +8,8 @@ const Projects = () => {
       description:
         "An automated traffic management system that uses cameras and YOLOv8 to detect the number of vehicles and emergency vehicles in real-time, dynamically adjusting traffic light timing.",
       technologies: ["Python", "OpenCV", "TensorFlow", "YOLOv8"],
-      github: "https://github.com/your-repo-link-traffic",
-      liveDemo: "https://your-live-demo-link-traffic",
+      github: "https://github.com/Ravitheja1289-dot/Urban-Track",
+      liveDemo: "https://urban-track-wkvu.vercel.app/",
       image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
