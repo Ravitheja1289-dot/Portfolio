@@ -22,6 +22,15 @@ const Projects = () => {
       image: "https://via.placeholder.com/600x400"
     },
     {
+      title: "Contact Manager API",
+      description:
+        "Secure backend API for managing contact form submissions with admin dashboard. Features include data validation, spam protection, and real-time notifications.",
+      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+      github: "https://github.com/your-username/contact-manager",
+      liveDemo: "https://your-contact-manager.com",
+      image: "https://via.placeholder.com/600x400"
+    },
+    {
       title: "Cyber Shield",
       description:
         "An AI-driven fraud detection system for online payments and email scams. Uses NLP to analyze email content and detect fake transaction patterns.",
