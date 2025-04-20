@@ -23,23 +23,34 @@ const Footer = () => {
           <div className="footer-social">
             <h3>Connect With Me</h3>
             <div className="social-icons">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" title="GitHub">
-                <i className="fab fa-github"></i>
+              <a href="https://github.com/Ravitheja1289-dot" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <i className="fa-brands fa-github"></i>
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <i className="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/ravithejareddy1289/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <i className="fa-brands fa-linkedin"></i>
               </a>
-              <a href="https://leetcode.com/yourusername" target="_blank" rel="noopener noreferrer" title="LeetCode">
-                <i className="fas fa-code"></i>
+              <a href="https://x.com/Ravitheja1289" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                <i className="fa-brands fa-x-twitter"></i>
               </a>
-              <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" title="Instagram">
-                <i className="fab fa-instagram"></i>
+              <a href="https://leetcode.com/u/Ravitheja_Reddy_1289/" target="_blank" rel="noopener noreferrer" title="LeetCode">
+                <img src="https://leetcode.com/static/images/LeetCode_logo_rvs.png" alt="LeetCode" className="leetcode-icon" />
+              </a>
+              <a href="https://www.hackerrank.com/profile/ravithejareddy11" target="_blank" rel="noopener noreferrer" title="HackerRank">
+                <i className="fa-brands fa-hackerrank"></i>
+              </a>
+              <a href="https://www.instagram.com/ravi__1289/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <i className="fa-brands fa-instagram"></i>
               </a>
             </div>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>Made with ❤️ by Ravi | Powered by React, Tailwind, and endless coffee ☕ 
+</p>
+<br />
+            <p>
+              © 2025 Ravi Dev. All rights reserved.
+              </p>
         </div>
       </div>
     </footer>

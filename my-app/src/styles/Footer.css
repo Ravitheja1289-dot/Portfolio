@@ -77,6 +77,12 @@
   transform: translateY(-3px);
 }
 
+.leetcode-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;

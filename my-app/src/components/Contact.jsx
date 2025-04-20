@@ -32,21 +32,21 @@ const Contact = () => {
               <i className="fas fa-envelope"></i>
               <div>
                 <h3>Email</h3>
-                <p>your.email@example.com</p>
+                <p>ravithejareddy1289@gmail.com</p>
               </div>
             </div>
             <div className="contact-item">
               <i className="fas fa-phone"></i>
               <div>
                 <h3>Phone</h3>
-                <p>+1 234 567 890</p>
+                <p>+91 6302121976</p>
               </div>
             </div>
             <div className="contact-item">
               <i className="fas fa-map-marker-alt"></i>
               <div>
                 <h3>Location</h3>
-                <p>New York, USA</p>
+                <p>Hyderabad, India</p>
               </div>
             </div>
           </div>
