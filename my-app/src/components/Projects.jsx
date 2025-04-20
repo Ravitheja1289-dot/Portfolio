@@ -26,7 +26,7 @@ const Projects = () => {
       description:
         "An AI-driven fraud detection system for online payments and email scams. Uses NLP to analyze email content and detect fake transaction patterns.",
       technologies: ["Python", "Scikit-learn", "NLP", "Flask"],
-      github: "https://github.com/your-repo-link-cybershield",
+      github: "https://github.com/Ravitheja1289-dot/CyberShield",
       liveDemo: "https://your-live-demo-link-cybershield",
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
@@ -35,8 +35,8 @@ const Projects = () => {
       description:
         "A generative AI-powered virtual financial assistant that helps users manage finances with smart insights (excluding fraud detection features).",
       technologies: ["Python", "LangChain", "GenAI", "React"],
-      github: "https://github.com/your-repo-link-quantumfin",
-      liveDemo: "https://your-live-demo-link-quantumfin",
+      github: "https://github.com/Ravitheja1289-dot/HackStack",
+      liveDemo: "https://hackstack-nu.vercel.app",
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
