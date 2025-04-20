@@ -65,7 +65,6 @@ const Skills = () => {
         { name: 'Git', icon: '📦' },
         { name: 'GitHub', icon: '🐙' },
         { name: 'Docker', icon: '🐳' },
-        { name: 'VS Code', icon: '💻' },
         { name: 'Figma', icon: '🎨' }
       ]
     },
