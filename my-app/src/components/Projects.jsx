@@ -10,7 +10,7 @@ const Projects = () => {
       technologies: ["Python", "OpenCV", "TensorFlow", "YOLOv8"],
       github: "https://github.com/your-repo-link-traffic",
       liveDemo: "https://your-live-demo-link-traffic",
-      image: "https://via.placeholder.com/600x400"
+      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
       title: "Mindful Strength",
@@ -19,16 +19,7 @@ const Projects = () => {
       technologies: ["Python", "NLP", "Flask"],
       github: "https://github.com/your-repo-link-chatbot",
       liveDemo: "https://your-live-demo-link-chatbot",
-      image: "https://via.placeholder.com/600x400"
-    },
-    {
-      title: "Contact Manager API",
-      description:
-        "Secure backend API for managing contact form submissions with admin dashboard. Features include data validation, spam protection, and real-time notifications.",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
-      github: "https://github.com/your-username/contact-manager",
-      liveDemo: "https://your-contact-manager.com",
-      image: "https://via.placeholder.com/600x400"
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
       title: "Cyber Shield",
@@ -37,7 +28,7 @@ const Projects = () => {
       technologies: ["Python", "Scikit-learn", "NLP", "Flask"],
       github: "https://github.com/your-repo-link-cybershield",
       liveDemo: "https://your-live-demo-link-cybershield",
-      image: "https://via.placeholder.com/600x400"
+      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
       title: "Quantum Fin",
@@ -46,7 +37,7 @@ const Projects = () => {
       technologies: ["Python", "LangChain", "GenAI", "React"],
       github: "https://github.com/your-repo-link-quantumfin",
       liveDemo: "https://your-live-demo-link-quantumfin",
-      image: "https://via.placeholder.com/600x400"
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     },
     {
       title: "Weather Dashboard",
@@ -55,7 +46,7 @@ const Projects = () => {
       technologies: ["React", "OpenWeather API", "Chart.js"],
       github: "https://github.com/your-username/weather-dashboard",
       liveDemo: "https://your-live-demo-link.com/weather",
-      image: "https://via.placeholder.com/600x400"
+      image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
     }
   ];
 
