@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="hero-buttons">
           <a href="#contact" className="btn primary">Contact Me</a>
           <a href="#projects" className="btn secondary">View Projects</a>
-          <a href="https://drive.google.com/file/d/1IBFH5x51gTLP_ceujRXVWaX1YwmI2VlZ/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="btn resume">
+          <a href="" target="_blank" rel="noopener noreferrer" className="btn resume">
             View Resume <i className="fa-solid fa-file-pdf"></i>
           </a>
         </div>
