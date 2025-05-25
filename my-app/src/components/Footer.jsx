@@ -41,6 +41,9 @@ const Footer = () => {
               <a href="https://www.instagram.com/ravi__1289/" target="_blank" rel="noopener noreferrer" title="Instagram">
                 <i className="fa-brands fa-instagram"></i>
               </a>
+              <a href="https://www.youtube.com/channel/your-channel-id" target="_blank" rel="noopener noreferrer" title="YouTube">
+                <i className="fa-brands fa-youtube"></i>
+              </a>
             </div>
           </div>
         </div>
