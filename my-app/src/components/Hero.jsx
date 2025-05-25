@@ -35,7 +35,7 @@ const Hero = () => {
           <a href="https://www.hackerrank.com/profile/ravithejareddy11" target="_blank" rel="noopener noreferrer">
             <i className="fa-brands fa-hackerrank"></i>
           </a>
-          <a href="https://www.youtube.com/channel/your-channel-id" target="_blank" rel="noopener noreferrer" title="YouTube">
+          <a href="https://www.youtube.com/@heyitsrr?si=QIWjmKRZZFrF6sU7" target="_blank" rel="noopener noreferrer" title="YouTube">
             <i className="fa-brands fa-youtube"></i>
           </a>
         </div>
